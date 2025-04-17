@@ -1,4 +1,4 @@
-import 'package:chat_app/auth/auth_service.dart';
+import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_textfield.dart';
 import 'package:flutter/material.dart';
@@ -39,85 +39,112 @@ class LoginPage extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Padding(
         padding: const EdgeInsets.all(25.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // logo
-            SizedBox(
-              height: 50,
-              child: Image(image: AssetImage("assets/logo/logo.png")),
-            ),
-            SizedBox(height: 20),
-            Text("We're excited to have you here. 😊"),
-            SizedBox(height: 40),
-            // email
-            MyTextfield(
-              hintText: "Email",
-              prefixIcon: Icons.email_outlined,
-              obscureText: false,
-              controller: _emailController,
-            ),
-            SizedBox(height: 20),
-            // password
-            MyTextfield(
-              prefixIcon: Icons.lock_open_rounded,
-              hintText: "Password",
-              obscureText: true,
-              controller: _pwController,
-            ),
-            SizedBox(height: 20),
-            // login
-            MyButton(buttonName: "Login", onTap: () => login(context)),
-            SizedBox(height: 20),
-            // register now
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Note a member ?  "),
-                GestureDetector(
-                  onTap: onTap,
-                  child: Text(
-                    "Register Now",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 80),
+              // logo
+              SizedBox(
+                height: 80,
+                child: Image(image: AssetImage("assets/logo/logo.png")),
+              ),
+              SizedBox(height: 10),
+              Text(
+                "We're excited to have you here. 😊",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
+              // email
+              MyTextfield(
+                hintText: "Email",
+                prefixIcon: Icons.email_outlined,
+                obscureText: false,
+                controller: _emailController,
+              ),
+              SizedBox(height: 20),
+              // password
+              MyTextfield(
+                prefixIcon: Icons.lock_open_rounded,
+                hintText: "Password",
+                obscureText: true,
+                controller: _pwController,
+              ),
+              SizedBox(height: 20),
+              // login
+              MyButton(buttonName: "Login", onTap: () => login(context)),
+              SizedBox(height: 20),
+              // register now
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Note a member ?  "),
+                  GestureDetector(
+                    onTap: onTap,
+                    child: Text(
+                      "Register Now",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: 50,
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                ],
+              ),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(child: Divider()),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5, right: 5),
+                    child: Text("OR"),
                   ),
-                  child: Image(image: AssetImage("assets/logo/facebook.png")),
-                ),
-                Container(
-                  height: 50,
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                  Expanded(child: Divider()),
+                ],
+              ),
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    height: 50,
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Image(image: AssetImage("assets/logo/google.png")),
                   ),
-                  child: Image(image: AssetImage("assets/logo/apple.png")),
-                ),
-                Container(
-                  height: 50,
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                  Container(
+                    height: 50,
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Image(image: AssetImage("assets/logo/facebook.png")),
                   ),
-                  child: Image(image: AssetImage("assets/logo/instagram.png")),
-                ),
-              ],
-            ),
-          ],
+                  Container(
+                    height: 50,
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Image(image: AssetImage("assets/logo/apple.png")),
+                  ),
+                  Container(
+                    height: 50,
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Image(
+                      image: AssetImage("assets/logo/instagram.png"),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
