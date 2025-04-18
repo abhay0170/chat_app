@@ -1,9 +1,12 @@
 import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/screens/settings_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  MyDrawer({super.key});
 
   logout() {
     // get auth services
@@ -20,7 +23,32 @@ class MyDrawer extends StatelessWidget {
       child: Column(
         children: [
           // logo
-          DrawerHeader(child: Center(child: Icon(Icons.message))),
+          DrawerHeader(
+            child: Center(
+              child: GestureDetector(
+                // onTap:
+                //     () => Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => ProfilePage()),
+                // ),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      maxRadius: 40,
+                      child: Image(
+                        image: AssetImage("assets/logo/profile.png"),
+                      ),
+                    ),
+                    Text(
+                      "User Name",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(_auth.currentUser!.uid),
+                  ],
+                ),
+              ),
+            ),
+          ),
 
           // home list tile
           ListTile(
